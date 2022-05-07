@@ -7,9 +7,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>Web Camera</title>
   <style>
-    main {
-      margin: 0 auto;
-    }
+    /* body {
+      height: 100vh;
+    } */
     .stream {
       width: 100%;
     }
@@ -33,17 +33,19 @@
 </body>
 </html>
 <script>
+  const on = function ($this) {
+    $('.stream').addClass('night_mode');
+    $this.parents('p').find('.on').hide();
+    $this.parents('p').find('.off').show();
+  }
+  const off = function ($this) {
+    $('.stream').removeClass('night_mode');
+    $this.parents('p').find('.off').hide();
+    $this.parents('p').find('.on').show();
+  }
   let nightMode = false;
   $(document).on('click', '.switchNightMode', function () {
     nightMode = !nightMode;
-    if (nightMode) {
-      $('.stream').addClass('night_mode');
-      $(this).parents('p').find('.on').hide();
-      $(this).parents('p').find('.off').show();
-    } else {
-      $('.stream').removeClass('night_mode');
-      $(this).parents('p').find('.off').hide();
-      $(this).parents('p').find('.on').show();
-    }
+    nightMode ? on($(this)) : off($(this));
   });
 </script>
