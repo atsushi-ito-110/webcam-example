@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Web Camera</title>
+  <style>
+    main {
+      margin: 0 auto;
+    }
+    .stream {
+      width: 100%;
+    }
+    .night_mode {
+      filter: brightness(700%);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="http://192.168.0.4:8080/?action=stream" class="stream">
+    <p>
+      <button type="button" class="switchNightMode on">
+        夜間モード ON
+      </button>
+      <button type="button" class="switchNightMode off" style="display: none;">
+        夜間モード OFF
+      </button>
+    </p>
+  </main>
+</body>
+</html>
+<script>
+  let nightMode = false;
+  $(document).on('click', '.switchNightMode', function () {
+    nightMode = !nightMode;
+    if (nightMode) {
+      $('.stream').addClass('night_mode');
+      $(this).parents('p').find('.on').hide();
+      $(this).parents('p').find('.off').show();
+    } else {
+      $('.stream').removeClass('night_mode');
+      $(this).parents('p').find('.off').hide();
+      $(this).parents('p').find('.on').show();
+    }
+  });
+</script>
