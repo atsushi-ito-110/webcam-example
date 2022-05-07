@@ -1,3 +1,4 @@
+#!/bin/bash
 ## This example shows how to invoke mjpg-streamer from the command line
  
 #インストール先のパスを設定
