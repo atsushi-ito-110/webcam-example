@@ -1,6 +1,5 @@
 #!/bin/bash
-## This example shows how to invoke mjpg-streamer from the command line
- 
+
 #インストール先のパスを設定
 export LD_LIBRARY_PATH="/home/pi/mjpg-streamer/mjpg-streamer-experimental"
 STREAMER="$LD_LIBRARY_PATH/mjpg_streamer"
