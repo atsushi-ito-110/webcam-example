@@ -13,9 +13,6 @@
     .stream {
       width: 100%;
     }
-    .night_mode {
-      filter: brightness(800%) contrast(120%) saturate(50%);
-    }
   </style>
 </head>
 <body>
@@ -29,23 +26,78 @@
         夜間モード OFF
       </button>
     </p>
+    <p>
+      <input type="range" id="brightness" name="brightness" min="100" max="1000" value="100" step="100">
+      <label for="brightness">Brightness&nbsp;<span id="current-brightness"></span></label>
+    </p>
+    <p>
+      <input type="range" id="contrast" name="contrast" min="100" max="200" value="100" step="10">
+      <label for="contrast">Contrast&nbsp;<span id="current-contrast"></span></label>
+    </p>
+    <p>
+      <input type="range" id="saturate" name="saturate" min="0" max="100" value="100" step="10">
+      <label for="saturate">Saturate&nbsp;<span id="current-saturate"></span></label>
+    </p>
   </main>
 </body>
 </html>
 <script>
   const on = function ($this) {
-    $('.stream').addClass('night_mode');
-    $this.parents('p').find('.on').hide();
-    $this.parents('p').find('.off').show();
+    $this.parents('p').find('.on').hide()
+    $this.parents('p').find('.off').show()
+    filter = {
+      brightness: '800',
+      contrast: '120',
+      saturate: '50',
+    }
+    changeFilter()
   }
   const off = function ($this) {
-    $('.stream').removeClass('night_mode');
-    $this.parents('p').find('.off').hide();
-    $this.parents('p').find('.on').show();
+    $this.parents('p').find('.off').hide()
+    $this.parents('p').find('.on').show()
+    filter = {
+      brightness: '100',
+      contrast: '100',
+      saturate: '100',
+    }
+    changeFilter()
   }
-  let nightMode = false;
+  let nightMode = false
   $(document).on('click', '.switchNightMode', function () {
-    nightMode = !nightMode;
-    nightMode ? on($(this)) : off($(this));
-  });
+    nightMode = !nightMode
+    nightMode ? on($(this)) : off($(this))
+  })
+
+  let filter = {
+    brightness: '100',
+    contrast: '100',
+    saturate: '100',
+  }
+  const changeFilter = function () {
+    console.log('changeFilter')
+    const filters = []
+    Object.keys(filter).forEach(function (key) {
+      console.log(`${key}(${filter[key]}%)`)
+      $(`#${key}`).val(filter[key])
+      $(`#current-${key}`).html(`${filter[key]}%`)
+      filters.push(`${key}(${filter[key]}%)`)
+    })
+    console.log(filters.join(' '));
+    $('.stream').css('filter', filters.join(' '))
+  }
+  $(document).on('change', '#brightness', function () {
+    console.log('change', '#brightness')
+    filter.brightness = $(this).val()
+    changeFilter()
+  })
+  $(document).on('change', '#contrast', function () {
+    console.log('change', '#contrast')
+    filter.contrast = $(this).val()
+    changeFilter()
+  })
+  $(document).on('change', '#saturate', function () {
+    console.log('change', '#saturate')
+    filter.saturate = $(this).val()
+    changeFilter()
+  })
 </script>
