@@ -27,15 +27,15 @@
       </button>
     </p>
     <p>
-      <input type="range" id="brightness" name="brightness" min="100" max="1000" value="100" step="100">
+      <input type="range" id="brightness" name="brightness" min="100" max="1500" value="100" step="100">
       <label for="brightness">Brightness&nbsp;<span id="current-brightness"></span></label>
     </p>
     <p>
-      <input type="range" id="contrast" name="contrast" min="100" max="200" value="100" step="10">
+      <input type="range" id="contrast" name="contrast" min="0" max="200" value="100" step="10">
       <label for="contrast">Contrast&nbsp;<span id="current-contrast"></span></label>
     </p>
     <p>
-      <input type="range" id="saturate" name="saturate" min="0" max="100" value="100" step="10">
+      <input type="range" id="saturate" name="saturate" min="0" max="200" value="100" step="10">
       <label for="saturate">Saturate&nbsp;<span id="current-saturate"></span></label>
     </p>
   </main>
@@ -46,9 +46,9 @@
     $this.parents('p').find('.on').hide()
     $this.parents('p').find('.off').show()
     filter = {
-      brightness: '800',
-      contrast: '120',
-      saturate: '50',
+      brightness: '900',
+      contrast: '160',
+      saturate: '150',
     }
     changeFilter()
   }
