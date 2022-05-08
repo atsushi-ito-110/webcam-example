@@ -1,4 +1,5 @@
 !screenshots/.keep
 screenshots/*
 
-s3-bucket-policy.json
+s3-*-policy.json
+request.json
