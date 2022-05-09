@@ -21,4 +21,5 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m   h  dom mon dow   command
-  */5 *  *   *   *     sh /home/pi/projects/webcam-example/screenshot.sh & sh /home/pi/projects/webcam-example/upload.sh
+  */2 *  *   *   *     sh /home/pi/projects/webcam-example/screenshot.sh; sh /home/pi/projects/webcam-example/upload.sh
+  # * * * * * ( sleep 30 sh /home/pi/projects/webcam-example/screenshot.sh; sh /home/pi/projects/webcam-example/upload.sh )
