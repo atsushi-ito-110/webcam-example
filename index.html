@@ -7,23 +7,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>Web Camera</title>
   <style>
-    /* body {
-      height: 100vh;
-    } */
     .stream {
       width: 100%;
     }
   </style>
 </head>
 <body>
-  <main>
-    <img src="http://192.168.0.4:8080/?action=stream" class="stream">
+  <header>
     <p>
       <button type="button" class="switchNightMode on">
         夜間モード ON
       </button>
       <button type="button" class="switchNightMode off" style="display: none;">
         夜間モード OFF
+      </button>
+      <button type="button" id="right">
+        回転→
       </button>
     </p>
     <p>
@@ -38,6 +37,9 @@
       <input type="range" id="saturate" name="saturate" min="0" max="200" value="100" step="10">
       <label for="saturate">Saturate&nbsp;<span id="current-saturate"></span></label>
     </p>
+  </header>
+  <main>
+    <img src="http://192.168.0.4:8080/?action=stream" class="stream">
   </main>
 </body>
 </html>
@@ -99,5 +101,10 @@
     console.log('change', '#saturate')
     filter.saturate = $(this).val()
     changeFilter()
+  })
+  let rotate = '0'
+  $(document).on('click', '#right', function () {
+    rotate = (rotate !== '0') ? '0' : '90'
+    $('.stream').css('transform', `rotate(${rotate}deg)`)
   })
 </script>
