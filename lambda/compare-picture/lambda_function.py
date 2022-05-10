@@ -1,6 +1,7 @@
 import json
 import logging
 import boto3
+
 from botocore.exceptions import ClientError
 
 def lambda_handler(event, context):
@@ -9,17 +10,29 @@ def lambda_handler(event, context):
 
     record = event['Records'][0]
 
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket(record['s3']['bucket']['name'])
-    bucket.download_file(record['s3']['object']['key'], '/tmp/test.jpg')
-
-    copy_object(record['s3']['bucket']['name'], record['s3']['object']['key'],
-                'webcam-compare', record['s3']['object']['key'])
+    delete_object_except_latest('webcam-compare')
+    copy_object(record['s3']['bucket']['name'],
+                record['s3']['object']['key'],
+                'webcam-compare',
+                record['s3']['object']['key'])
 
     return {
         'statusCode': 200,
         'body': json.dumps('Hello from Lambda!')
     }
+
+def delete_object_except_latest(bucket_name):
+    s3 = boto3.client('s3')
+    objects = s3.list_objects(
+        Bucket=bucket_name
+    )
+    objects['Contents'].pop(-1)
+    for c in objects['Contents']:
+        print(c['Key'])
+        s3.delete_object(
+            Bucket=bucket_name,
+            Key=c['Key']
+        )
 
 def copy_object(src_bucket_name, src_object_name,
                 dest_bucket_name, dest_object_name=None):
