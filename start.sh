@@ -7,8 +7,8 @@ STREAMER="$LD_LIBRARY_PATH/mjpg_streamer"
 # 表示する画像サイズとフレームレートを設定
 # 画像サイズ(320×240)
 # フレームレート：10fps
-SIZE="320x240"
-# SIZE="640x480"
+# SIZE="320x240"
+SIZE="640x480"
 # SIZE="1920x1080"
 FRAME_RATE="10"
 # FRAME_RATE="15"
