@@ -22,6 +22,6 @@ EC2IP=xx.xx.xx.xx
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m   h  dom mon dow   command
-  *   *  *   *   *     sh /home/pi/projects/webcam-example/screenshot.sh >> /home/pi/cron.log && sh /home/pi/projects/webcam-example/upload.sh >> /home/pi/cron.log
-  *   *  *   *   *     sleep 30 && sh /home/pi/projects/webcam-example/screenshot.sh >> /home/pi/cron.log && sh /home/pi/projects/webcam-example/upload.sh >> /home/pi/cron.log
+  *   *  *   *   *     sh /home/pi/projects/webcam-example/uploader.sh >> /home/pi/cron.log
+  *   *  *   *   *     sleep 30 && sh /home/pi/projects/webcam-example/uploader.sh >> /home/pi/cron.log
 
