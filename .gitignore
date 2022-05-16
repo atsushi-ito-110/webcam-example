@@ -1,6 +1,9 @@
 !screenshots/.keep
 screenshots/*
 
+log/*
+!log/.keep
+
 s3-*-policy.json
 request.json
 env.sh
