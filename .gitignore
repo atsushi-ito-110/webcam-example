@@ -4,6 +4,9 @@ screenshots/*
 log/*
 !log/.keep
 
+submodules/*
+!submodules/.keep
+
 s3-*-policy.json
 request.json
 env.sh
